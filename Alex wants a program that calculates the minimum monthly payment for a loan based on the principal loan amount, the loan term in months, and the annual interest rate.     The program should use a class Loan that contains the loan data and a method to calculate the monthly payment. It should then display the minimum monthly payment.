@@ -1,0 +1,28 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+class Loan {
+public:
+    int principal;
+    int term;
+    double interestRate;
+};
+
+
+int main() {
+    int amt;
+    cin >> amt;
+    int term;
+    cin >> term;
+    double rate;
+    cin >> rate;
+
+    double monthlyInterestRate = rate / 12;
+    double mPayment = (amt * monthlyInterestRate) / (1 - pow(1 + monthlyInterestRate, -term));
+
+    cout << fixed << setprecision(2) << "Minimum monthly payment: " << mPayment << endl;
+
+    return 0;
+}
