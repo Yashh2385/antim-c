@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+struct RationalNumber {
+    int numerator;
+    int denominator;
+};
+
+union RationalOrInteger {
+    int wholeNumber;
+    RationalNumber r;
+};
+
+int main() {
+    RationalOrInteger a, b;
+    char choice;
+
+    cin >> choice;
+
+    if (choice == 'R') {
+        cin >> a.r.numerator >> a.r.denominator;
+        cin >> b.r.numerator >> b.r.denominator;
+        RationalNumber result;
+        result.numerator = (a.r.numerator * b.r.denominator) + (b.r.numerator * a.r.denominator);
+        result.denominator = a.r.denominator * b.r.denominator;
+        cout << result.numerator << "/" << result.denominator << endl;
+        return 0;
+    } 
+    
+    if (choice == 'W') {
+        cin >> a.wholeNumber;
+        cout << a.wholeNumber << "/1" << endl;
+        return 0;
+    }
+
+    return 0;
+}
