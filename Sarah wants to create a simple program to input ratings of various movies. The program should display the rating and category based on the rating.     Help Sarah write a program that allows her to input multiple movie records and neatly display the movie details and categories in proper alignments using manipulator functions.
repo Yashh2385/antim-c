@@ -1,0 +1,30 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+using namespace std;
+
+int main() {
+    int numMovies;
+    cin >> numMovies;
+
+    for (int i = 1; i <= numMovies; i++) {
+        int rating;
+        cin >> rating;
+        string category;
+
+        if (rating >= 8) {
+            category = "Excellent";
+        } else if (rating >= 6) {
+            category = "Average";
+        } else {
+            category = "Poor";
+        }
+
+        cout << "Rating: " << setw(7) << rating << "/10" << endl;
+        cout << "Category: " << setw(7) << category << endl;
+        cout << endl;
+    }
+
+    return 0;
+}
