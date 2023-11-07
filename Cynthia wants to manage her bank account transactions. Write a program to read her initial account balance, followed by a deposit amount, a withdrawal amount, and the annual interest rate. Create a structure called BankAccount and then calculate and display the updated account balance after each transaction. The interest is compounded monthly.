@@ -1,0 +1,29 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+struct BankAccount {
+    float balance;
+};
+
+int main() {
+    BankAccount myAccount;
+    cin >> myAccount.balance;
+    float depositAmount, withdrawalAmount, annualInterestRate;
+    
+    cout << fixed << setprecision(2);
+    cin >> depositAmount;
+    myAccount.balance += depositAmount;
+    cout << "$" << myAccount.balance << endl;
+
+    cin >> withdrawalAmount;
+    myAccount.balance -= withdrawalAmount;
+    cout << "$" << myAccount.balance << endl;
+    
+    cin >> annualInterestRate;
+    float monthlyInterestRate = annualInterestRate / 12 / 100;
+    myAccount.balance += myAccount.balance * monthlyInterestRate;
+    cout << "$" << myAccount.balance << endl;
+
+    return 0;
+}
