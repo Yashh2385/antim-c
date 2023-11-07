@@ -1,0 +1,30 @@
+// You are using GCC
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+    int numDays;
+    double totalTemperature = 0;
+    double averageTemperature = 0;
+
+    cin >> numDays;
+
+    for (int day = 1; day <= numDays; day++) {
+        double temperature, humidity;
+        cin >> temperature;
+        cin >> humidity;
+        totalTemperature += temperature;
+
+        cout << fixed << setprecision(1);
+        cout << "Temperature: " << setw(5) << temperature << ", Humidity: " << setw(5) << humidity << "%" << endl;
+    }
+
+    averageTemperature = totalTemperature / numDays;
+
+    cout << fixed << setprecision(1);
+    cout << "Average Temperature: " << setw(5) << averageTemperature << endl;
+
+    return 0;
+}
