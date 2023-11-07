@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+class Money {
+public:
+    int rupee;
+    int paisa;
+};
+
+int main() {
+    Money money1, money2;
+    int t;
+
+    cin >> t;
+    money1.rupee = t;
+    cin >> t;
+    money1.paisa = t;
+
+    cin >> t;
+    money2.rupee = t;
+    cin >> t;
+    money2.paisa = t;
+
+    int r = money1.rupee + money2.rupee;
+    int p = money1.paisa + money2.paisa;
+
+    if (p > 99) {
+        r += 1;
+        p = p - 100;
+    }
+
+    cout << r << "." << p;
+    return 0;
+}
