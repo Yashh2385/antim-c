@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std; 
+
+class Person {
+public:
+    int birth_year;
+    int birth_month;
+    int birth_day;
+};
+
+int main() {
+    Person alice;
+    cin >> alice.birth_day >> alice.birth_month >> alice.birth_year;
+    int current_year = 2023;  
+    int age = current_year - alice.birth_year;
+
+    bool is_eligible_to_vote = age >= 18;
+    bool is_eligible_for_retirement = age >= 65;
+    
+    cout << age << " years old." << endl;
+    
+    if (is_eligible_to_vote) {
+        cout << "Eligible to vote." << endl;
+    } else {
+        cout << "Not eligible to vote." << endl;
+    }
+
+    if (is_eligible_for_retirement) {
+        cout << "Eligible for retirement." << endl;
+    } else {
+        cout << "Not eligible for retirement." << endl;
+    }
+
+    return 0;
+}
