@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+class LibraryFineCalculator {
+public:
+    int daysOverdue;
+};
+
+int main() {
+    LibraryFineCalculator f;
+    cin >> f.daysOverdue;
+
+    int fineAmount = 0;
+
+    if (f.daysOverdue <= 7) {
+        fineAmount = 0;
+    } 
+    else if (f.daysOverdue <= 15) {
+        fineAmount = f.daysOverdue * 2;
+    } 
+    else  {
+        fineAmount = 7 * 2 + (f.daysOverdue - 7) * 5;
+    } 
+
+    cout << "Rs. " << fineAmount << endl;
+
+    return 0;
+}
