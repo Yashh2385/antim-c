@@ -1,0 +1,28 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+inline bool hasRepeatingDigits(string input) {
+    for (size_t i = 0; i < input.length(); i++) {
+        for (size_t j = i + 1; j < input.length(); j++) {
+            if (input[i] == input[j]) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+int main() {
+    string input;
+    cin >> input;
+    bool hasRepeating = hasRepeatingDigits(input);
+    if (hasRepeating) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
+
+    return 0;
+}
