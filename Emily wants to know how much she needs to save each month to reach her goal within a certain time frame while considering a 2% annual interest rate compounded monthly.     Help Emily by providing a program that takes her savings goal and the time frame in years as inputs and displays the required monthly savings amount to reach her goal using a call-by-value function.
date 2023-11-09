@@ -1,0 +1,25 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+double calculateMonthlySavings(int time, double goal) {
+    double annualInterestRate = 0.02; 
+    double monthlyInterestRate = annualInterestRate / 12; 
+    double months = time * 12; 
+
+    double monthlySavings = goal / ((pow(1 + monthlyInterestRate, months) - 1) / monthlyInterestRate);
+    return monthlySavings;
+}
+
+int main() {
+    int time;
+    double goal;
+    cin >> time;
+    cin >> goal;
+
+    double monthlySavings = calculateMonthlySavings(time, goal);
+    cout << fixed << setprecision(2) << "$" << monthlySavings << endl;
+
+    return 0;
+}
