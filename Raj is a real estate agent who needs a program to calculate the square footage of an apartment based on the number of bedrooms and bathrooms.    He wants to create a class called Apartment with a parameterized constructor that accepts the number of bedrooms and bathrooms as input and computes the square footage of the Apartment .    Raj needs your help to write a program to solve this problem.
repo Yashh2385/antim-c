@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+class Apartment {
+private:
+    int bedrooms;
+    int bathrooms;
+    double squareFootage;
+
+public:
+    Apartment(int numBedrooms, int numBathrooms) {
+        bedrooms = numBedrooms;
+        bathrooms = numBathrooms;
+        squareFootage = numBedrooms * 250 + numBathrooms * 100;
+    }
+
+    void displayHouseDetails() {
+        cout << squareFootage;
+    }
+};
+
+int main() {
+    int numBedrooms, numBathrooms;
+
+    cin >> numBedrooms;
+    cin >> numBathrooms;
+
+    Apartment myHouse(numBedrooms, numBathrooms);
+
+    myHouse.displayHouseDetails();
+
+    return 0;
+}
