@@ -1,0 +1,41 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+class MovieTicketBooking {
+public:
+    int numAdults;
+    int numKids;
+    double adultPrice = 210.0;
+    double kidPrice = 150.0;
+
+    double calculateTotalCost() {
+        double totalCost = (numAdults * adultPrice) + (numKids * kidPrice);
+        return totalCost;
+    }
+
+    void applyDiscounts() {
+        double A = (numKids * kidPrice) * 0.2;
+        double B = (numAdults * adultPrice) * 0.1;
+        double discount = A + B;
+        double total = calculateTotalCost() - discount;
+        cout << fixed << setprecision(2) << "After discounts: " << total << endl;
+    }
+};
+
+int main() {
+    MovieTicketBooking booking;
+
+    int adults, kids;
+    cin >> adults >> kids;
+
+    booking.numAdults = adults;
+    booking.numKids = kids;
+
+    double totalCost = booking.calculateTotalCost();
+    cout << fixed << setprecision(2) << "Before discounts: " << totalCost << endl;
+
+    booking.applyDiscounts();
+    return 0;
+}
