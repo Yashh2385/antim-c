@@ -1,0 +1,39 @@
+#include <iostream>
+
+using namespace std; 
+
+class Flight {
+private:
+    int departureTime;
+    int arrivalTime;
+
+public:
+    Flight(int departure, int arrival){
+         departureTime=departure;
+         arrivalTime=arrival;
+    }
+
+    void calculateDuration() {
+        int departureHour = departureTime / 100;
+        int departureMinute = departureTime % 100;
+        int arrivalHour = arrivalTime / 100;
+        int arrivalMinute = arrivalTime % 100;
+
+        int duration = (arrivalHour * 60 + arrivalMinute) - (departureHour * 60 + departureMinute);
+
+        cout << duration;
+    }
+};
+
+int main() {
+    int departureTime, arrivalTime;
+
+    cin >> departureTime;
+
+    cin >> arrivalTime;
+
+    Flight myFlight(departureTime, arrivalTime);
+    myFlight.calculateDuration();
+
+    return 0;
+}
