@@ -1,0 +1,24 @@
+#include <iostream>
+#include <iomanip>
+using namespace std; 
+
+double calculateTotalCost(int items) {
+    const double basePrice = 10.0;  
+    double discountRate = 0.0;     
+    double totalCost = 0.0;        
+
+    if (items > 1) {
+        discountRate = 0.10 * (items - 1);  
+    }
+
+    totalCost = items * basePrice * (1.0 - discountRate);
+    return totalCost;
+}
+
+int main() {
+    int numItems;
+    cin >> numItems;
+    double cost = calculateTotalCost(numItems);
+    cout << fixed << setprecision(2) << cost << endl;
+    return 0;
+}
