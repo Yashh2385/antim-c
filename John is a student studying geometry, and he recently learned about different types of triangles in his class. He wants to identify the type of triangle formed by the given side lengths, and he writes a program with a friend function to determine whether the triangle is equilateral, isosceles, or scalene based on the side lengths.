@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+class Triangle {
+private:
+    double side1;
+    double side2;
+    double side3;
+
+public:
+    void setSides(double s1, double s2, double s3) {
+        side1 = s1;
+        side2 = s2;
+        side3 = s3;
+    }
+
+    friend void classifyTriangle(const Triangle& tri);
+};
+
+void classifyTriangle(const Triangle& tri) {
+    if (tri.side1 == tri.side2 && tri.side2 == tri.side3) {
+        cout << "Equilateral triangle";
+    } else if (tri.side1 == tri.side2 || tri.side2 == tri.side3 || tri.side1 == tri.side3) {
+        cout << "Isosceles triangle";
+    } else {
+        cout << "Scalene triangle";
+    }
+}
+
+int main() {
+    Triangle t;
+    double s1, s2, s3;
+
+    cin >> s1 >> s2 >> s3;
+
+    t.setSides(s1, s2, s3);
+    classifyTriangle(t);
+
+    return 0;
+}
