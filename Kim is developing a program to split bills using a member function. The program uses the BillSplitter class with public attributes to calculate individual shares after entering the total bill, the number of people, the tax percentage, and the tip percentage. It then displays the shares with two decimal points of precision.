@@ -1,0 +1,50 @@
+// You are using GCC
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class BillSplitter {
+public:
+    double totalBill;
+    int numPeople;
+    double taxPercent;
+    double tipPercent;
+    double share;
+
+    void setBillDetails(double total, int N, double tax, double tip) {
+        totalBill = total;
+        numPeople = N;
+        taxPercent = tax;
+        tipPercent = tip;
+    }
+
+    void calculateShares() {
+        double taxAmount = (taxPercent / 100) * totalBill;
+        double tipAmount = (tipPercent / 100) * totalBill;
+        double billWithTaxAndTip = totalBill + taxAmount + tipAmount;
+        share = billWithTaxAndTip / numPeople;
+    }
+
+    void displayShares() {
+        cout << "Individual Shares:\n";
+        cout << fixed << setprecision(2);
+        for (int i = 0; i < numPeople; i++) {
+            cout << "Person " << i + 1 << ": " << share << endl;
+        }
+    }
+};
+
+int main() {
+    BillSplitter billSplitter;
+
+    double totalBill, taxPercent, tipPercent;
+    int numPeople;
+
+    cin >> totalBill >> numPeople >> taxPercent >> tipPercent;
+
+    billSplitter.setBillDetails(totalBill, numPeople, taxPercent, tipPercent);
+    billSplitter.calculateShares();
+    billSplitter.displayShares();
+
+    return 0;
+}
