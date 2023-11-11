@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+class Time {
+private:
+    int hours;
+    int minutes;
+
+public:
+    void setTime(int h, int m) {
+        hours = h;
+        minutes = m;
+    }
+
+    friend Time addTimes(Time t1, Time t2) {
+        int totalMinutes = t1.hours * 60 + t1.minutes + t2.hours * 60 + t2.minutes;
+        int resultHours = totalMinutes / 60;
+        int resultMinutes = totalMinutes % 60;
+        Time result;
+        result.hours = resultHours;
+        result.minutes = resultMinutes;
+        return result;
+    }
+
+    friend void displayTime(Time t) {
+        int h = t.hours;
+        int m = t.minutes;
+        if (h >= 24) {
+            h %= 24;
+        }
+        if (h < 10) {
+            cout << "0";
+        }
+        cout << h << ":";
+        if (m < 10) {
+            cout << "0";
+        }
+        cout << m << endl;
+    }
+};
+
+int main() {
+    Time time1;
+    Time time2;
+    int h, m;
+
+    cin >> h >> m;
+    time1.setTime(h, m);
+
+    cin >> h >> m;
+    time2.setTime(h, m);
+
+    Time sum = addTimes(time1, time2);
+
+    displayTime(sum);
+
+    return 0;
+}
