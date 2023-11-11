@@ -1,0 +1,43 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+class Cylinder {
+private:
+    double radius;
+    double height;
+
+public:
+    void setDimensions(double r, double h) {
+        radius = r;
+        height = h;
+    }
+
+    friend double calculateSurfaceArea(Cylinder c);
+};
+
+double calculateSurfaceArea(Cylinder c) {
+    double pi = 3.14;
+    double surfaceArea = 2 * pi * c.radius * c.radius + 2 * pi * c.radius * c.height;
+    return surfaceArea;
+}
+
+int main() {
+    Cylinder myCylinder;
+    double r, h;
+
+   
+    cin >> r;
+  
+    cin >> h;
+
+    myCylinder.setDimensions(r, h);
+
+    double surfaceArea = calculateSurfaceArea(myCylinder);
+
+    cout << fixed << setprecision(2);
+    cout<< surfaceArea << endl;
+
+    return 0;
+}
