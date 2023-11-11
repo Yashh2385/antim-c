@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+class CarRental {
+public:
+    int rate;
+    int discount;
+    
+    int calculateRentalCost(int days) {
+        int cost = rate * days;
+        if (days > 7) {
+            cost -= discount * (days - 7);
+        }
+        return cost;
+    }
+};
+
+int main() {
+    int days;
+    CarRental rental;
+    cin >> rental.rate >> rental.discount >> days;
+    int cost = rental.calculateRentalCost(days);
+    cout << "$" << cost << endl;
+    return 0;
+}
