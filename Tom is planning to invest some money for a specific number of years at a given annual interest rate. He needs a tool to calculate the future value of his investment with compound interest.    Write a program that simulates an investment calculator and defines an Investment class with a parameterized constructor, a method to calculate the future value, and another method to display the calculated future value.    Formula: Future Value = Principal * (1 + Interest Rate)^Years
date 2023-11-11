@@ -1,0 +1,45 @@
+// You are using GCC
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+using namespace std;
+
+class Investment {
+private:
+    double principal;
+    double interestRate;
+
+public:
+    Investment(double p, double r) {
+        principal = p;
+        interestRate = r / 100.0;
+    }
+
+    double calculateFutureValue(int years) {
+        return principal * pow(1 + interestRate, years);
+    }
+
+    void displayFutureValue(int years) {
+        double futureValue = calculateFutureValue(years);
+        cout << fixed << setprecision(2);
+        cout << fixed << futureValue << endl;
+    }
+};
+
+int main() {
+    double principal;
+    double interestRate;
+    int years;
+
+    cin >> principal;
+
+    cin >> interestRate;
+
+    cin >> years;
+
+    Investment investment(principal, interestRate);
+    investment.displayFutureValue(years);
+
+    return 0;
+}
