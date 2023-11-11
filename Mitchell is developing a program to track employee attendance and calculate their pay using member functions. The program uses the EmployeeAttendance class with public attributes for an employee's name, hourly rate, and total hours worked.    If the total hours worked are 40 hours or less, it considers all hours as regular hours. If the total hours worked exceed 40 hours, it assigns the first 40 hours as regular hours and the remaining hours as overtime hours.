@@ -1,0 +1,47 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class EmployeeAttendance {
+public:
+    double hourlyRate;
+    int regularHoursWorked;
+    int overtimeHoursWorked;
+
+    void setEmployeeInfo() {
+        cin >> hourlyRate;
+    }
+
+    void recordAttendance() {
+        int totalHoursWorked;
+        cin >> totalHoursWorked;
+
+        if (totalHoursWorked <= 40) {
+            regularHoursWorked = totalHoursWorked;
+            overtimeHoursWorked = 0;
+        } else {
+            regularHoursWorked = 40;
+            overtimeHoursWorked = totalHoursWorked - 40;
+        }
+    }
+
+    double calculatePay() {
+        double regularPay = regularHoursWorked * hourlyRate;
+        double overtimePay = overtimeHoursWorked * (hourlyRate * 1.5);
+        return regularPay + overtimePay;
+    }
+
+    void displayInfo() {
+        cout << fixed << setprecision(2) << calculatePay() << endl;
+    }
+};
+
+int main() {
+    EmployeeAttendance employee;
+
+    employee.setEmployeeInfo();
+    employee.recordAttendance();
+    employee.displayInfo();
+
+    return 0;
+}
