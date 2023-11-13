@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+
+class Split {
+public:
+    virtual int split(int num, int& result) {
+        return 0;
+    }
+};
+
+class SplitTens : public Split {
+public:
+    int split(int num, int& result) {
+        if (num >= 10 && num <= 99) {
+            result = num / 10;  // Store the tens part
+            return num % 10;   // Store the ones part
+        }
+        return 0;
+    }
+};
+
+class SplitHundreds : public Split {
+public:
+    int split(int num, int& result) {
+        if (num >= 100 && num <= 999) {
+            result = num / 100;  // Store the hundreds part
+            return num % 100;   // Store the remaining part
+        }
+        return 0;
+    }
+};
+
+int main() {
+    SplitTens splitTens;
+    SplitHundreds splitHundreds;
+
+    int num1, num2;
+
+    cin >> num1;
+    cin >> num2;
+
+    int result1 = 0;
+    int result2 = 0;
+
+    int remainder1 = splitTens.split(num1, result1);
+    int remainder2 = splitHundreds.split(num2, result2);
+
+    if (remainder1 != 0) {
+        cout  << result1 <<" "<< remainder1 << endl;
+    } else {
+        cout << "Input is not a two-digit number" << endl;
+    }
+
+    if (remainder2 != 0) {
+        cout << result2 << " " << remainder2 << endl;
+    } else {
+        cout << "Input is not a three-digit number" << endl;
+    }
+
+    return 0;
+}
