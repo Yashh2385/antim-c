@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+class Hotel {
+public:
+    virtual int calculatePrice(int nights, int people) = 0;
+};
+
+// Derived class for Single Room
+class SingleRoom : public Hotel {
+public:
+    int calculatePrice(int nights, int people) override {
+        int cost = nights * 100;
+
+        if (nights > 5) {
+            cost = cost - (cost * 0.1);
+        }
+        else {
+            cost = cost + 15;
+        }
+
+        return cost;
+    }
+};
+
+class DoubleRoom : public Hotel {
+public:
+    int calculatePrice(int nights, int people) override {
+        int cost = nights * 150;
+
+        if (nights > 5) {
+            cost = cost - (cost * 0.1);
+        }
+        else {
+            cost = cost + 15;
+        }
+
+        return cost;
+    }
+};
+
+int main() {
+    SingleRoom singleRoom;
+    DoubleRoom doubleRoom;
+
+    int nights, people;
+    cin >> nights;
+    cin >> people;
+
+    int singleRoomCost = singleRoom.calculatePrice(nights, people);
+    int doubleRoomCost = doubleRoom.calculatePrice(nights, people);
+
+    cout << "Single Room Cost: " << singleRoomCost << endl;
+    cout << "Double Room Cost: " << doubleRoomCost << endl;
+
+    return 0;
+}
