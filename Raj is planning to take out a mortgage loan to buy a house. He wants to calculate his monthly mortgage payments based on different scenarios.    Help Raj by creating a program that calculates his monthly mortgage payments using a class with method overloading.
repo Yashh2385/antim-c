@@ -1,0 +1,50 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+class Calc {
+public:
+    double calcPay(double princ, double rate, int time) {
+        if (princ <= 0 || rate <= 0 || time < 12) {
+            return 0;
+        }
+
+        double mRate = rate / 12 / 100;
+        double denom = 1 - pow(1 + mRate, -time);
+        double mPayment = princ * mRate / denom;
+        return mPayment;
+    }
+
+    double calcPay(double princ, double rate) {
+        if (rate == 0) {
+            return princ * 0.03; 
+        }
+        return calcPay(princ, rate, 360);
+    }
+};
+
+int main() {
+    Calc calculator;
+    double princ, rate, time;
+
+    cin >> princ;
+    cin >> rate;
+    cin >> time;
+
+    double mPayment;
+
+    if (rate == 0) {
+        mPayment = calculator.calcPay(princ, rate);
+    } else {
+        mPayment = calculator.calcPay(princ, rate, time); 
+    }
+
+    if (mPayment == 0) {
+        cout << "Short term mortgage" << endl;
+    } else {
+        cout << fixed << setprecision(2) << mPayment << endl;
+    }
+
+    return 0;
+}
