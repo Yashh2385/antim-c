@@ -1,0 +1,44 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+class WorkSchedule {
+public:
+    string employeeName;
+    int hoursWorked;
+    int overtimeHours;
+
+    void calculateOvertime() {
+        if (hoursWorked > 40) {
+            overtimeHours = hoursWorked - 40;
+        } else {
+            overtimeHours = 0;
+        }
+    }
+
+    void displayInfo() {
+        cout << overtimeHours << endl;
+    }
+};
+
+int main() {
+    int numEmployees;
+    
+    cin >> numEmployees;
+
+    WorkSchedule employees[numEmployees]; 
+
+    for (int i = 0; i < numEmployees; i++) {
+        cin >> employees[i].employeeName;
+        cin >> employees[i].hoursWorked;
+
+        employees[i].calculateOvertime();
+    }
+
+    for (int i = 0; i < numEmployees; i++) {
+        employees[i].displayInfo();
+    }
+
+    return 0;
+}
