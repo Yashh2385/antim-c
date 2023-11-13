@@ -1,0 +1,80 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class FoodItem {
+protected:
+    int calories;
+    int protein;
+
+public:
+
+    FoodItem() 
+    {
+        calories = 0;
+        protein = 0;
+    }
+        
+    FoodItem(int cal, int prot) {
+        calories = cal;
+        protein = prot;
+    }
+
+    double calculateProteinToCalorieRatio() {
+        if (calories == 0) {
+            return 0.0;
+        }
+        return double (protein) / calories;
+    }
+};
+
+class Veg : virtual public FoodItem {
+public:
+    Veg(int cal = 0, int prot = 0) {
+        calories = cal;
+        protein = prot;
+    }
+};
+
+class NonVeg : virtual public FoodItem {
+public:
+    NonVeg(int cal = 0, int prot = 0) {
+        calories = cal;
+        protein = prot;
+    }
+};
+
+class Vegan : public Veg, public NonVeg {
+public:
+    Vegan(int cal = 0, int prot = 0) {
+        calories = cal;
+        protein = prot;
+    }
+    
+    string labelProtein() {
+        double ratio = calculateProteinToCalorieRatio();
+        if (ratio < 0.1) {
+            return "Low in Protein";
+        } else if (ratio >= 0.1 && ratio <= 0.3) {
+            return "Moderate in Protein";
+        } else {
+            return "High in Protein";
+        }
+    }
+};
+
+int main() {
+    int calories, protein;
+
+    cin >> calories;
+    cin >> protein;
+
+    Vegan veganFood(calories, protein);
+    double ratio = veganFood.calculateProteinToCalorieRatio();
+    string label = veganFood.labelProtein();
+
+    cout << fixed << setprecision(2) << ratio << endl;
+    cout << label << endl;
+
+    return 0;
+}
