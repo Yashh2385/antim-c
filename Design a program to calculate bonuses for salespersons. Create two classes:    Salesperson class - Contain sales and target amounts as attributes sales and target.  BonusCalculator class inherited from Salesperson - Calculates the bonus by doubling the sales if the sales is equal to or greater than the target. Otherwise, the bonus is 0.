@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+class Salesperson {
+public:
+    int sales;
+    int target;
+
+    Salesperson(int s, int t) {
+        sales = s;
+        target = t;
+    }
+
+    ~Salesperson() {
+        cout << "Salesperson Destroyed!" << endl;
+    }
+};
+
+class BonusCalculator : public Salesperson {
+public:
+    BonusCalculator(int sales, int target) : Salesperson(sales, target) {
+        calculateBonus();
+    }
+
+    ~BonusCalculator() {
+        cout << "Bonus Destroyed!" << endl;
+    }
+
+    void calculateBonus() {
+        int bonus = 0;
+        if (sales >= target) {
+            bonus = sales * 2;
+        }
+        cout << "Bonus: Rs." << bonus << endl;
+    }
+};
+
+int main() {
+    int sales, target;
+    cin >> sales;
+    cin >> target;
+
+    BonusCalculator employee(sales, target);
+    return 0;
+}
