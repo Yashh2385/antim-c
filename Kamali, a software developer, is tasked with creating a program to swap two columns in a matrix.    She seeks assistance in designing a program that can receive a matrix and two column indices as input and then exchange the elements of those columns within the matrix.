@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+#define MAX_ROWS 100
+#define MAX_COLS 100
+
+void interchangeColumns(int matrix[MAX_ROWS][MAX_COLS], int rows, int col1, int col2) {
+    for (int i = 0; i < rows; i++) {
+        int temp = matrix[i][col1];
+        matrix[i][col1] = matrix[i][col2];
+        matrix[i][col2] = temp;
+    }
+}
+
+int main() {
+    int rows, cols;
+
+    cin >> rows;
+    cin >> cols;
+
+    int matrix[MAX_ROWS][MAX_COLS];
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+
+    int col1, col2;
+    cin >> col1 >> col2;
+
+    if (col1 < 0 || col1 >= cols || col2 < 0 || col2 >= cols) {
+        cout << "Invalid column indices" << endl;
+        return 0;
+    }
+
+    interchangeColumns(matrix, rows, col1, col2);
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << matrix[i][j] << " ";
+        }
+        cout << "\n";
+    }
+
+    return 0;
+}
