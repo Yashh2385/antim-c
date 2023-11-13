@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+class Stock {
+private:
+    int buyingPrice;
+    int sellingPrice;
+
+public:
+    Stock(int buy, int sell) {
+        buyingPrice = buy;
+        sellingPrice = sell;
+    }
+
+    friend int operator-(Stock& s1, Stock& s2);
+    friend int operator+(Stock& s1, Stock& s2); // Addition operator
+
+    void checkProfit() {
+        int profit = sellingPrice - buyingPrice;
+        if (profit > 0) {
+            double profitPercentage = double(profit) / buyingPrice * 100;
+            cout << "Profit: " << profit << endl;
+            if (profitPercentage > 20.0) {
+                cout << "High Profit" << endl;
+            }
+        } else {
+            cout << "Loss: " << profit << endl;
+        }
+    }
+};
+
+int operator-(Stock& s1, Stock& s2) {
+    return s1.sellingPrice - s2.buyingPrice;
+}
+
+int operator+(Stock& s1, Stock& s2) {
+    return s1.sellingPrice + s2.buyingPrice; // Addition operator
+}
+
+int main() {
+    int buyPrice, sellPrice;
+
+    cin >> buyPrice;
+    cin >> sellPrice;
+
+    Stock stock(buyPrice, sellPrice);
+
+    int profitOrLoss = stock - stock; // Using the subtraction operator
+
+    stock.checkProfit();
+
+    int additionResult = stock + stock; // Using the addition operator
+    cout << "Total Price: " << additionResult << endl;
+
+    return 0;
+}
