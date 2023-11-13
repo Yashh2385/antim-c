@@ -1,0 +1,68 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Book {
+protected:
+    int numPages;
+    int price;
+
+public:
+    Book(int pages, int bookPrice) {
+        numPages = pages;
+        price = bookPrice;
+    }
+
+    ~Book() {
+        cout << "Destroyed Book!" << endl;
+    }
+};
+
+class Price : public Book {
+protected:
+    int numChapters;
+
+public:
+    Price(int pages, int bookPrice, int chapters) : Book(pages, bookPrice) {
+        numChapters = chapters;
+    }
+
+    double AvgChapter() {
+        return double(price) / numChapters;
+    }
+
+    ~Price() {
+        cout << "Destroyed Price!" << endl;
+    }
+};
+
+class Pages : public Price {
+public:
+    Pages(int pages, int bookPrice, int chapters) : Price(pages, bookPrice, chapters) {}
+
+    double AvgPages() {
+        return double(numPages) / numChapters;
+    }
+
+    ~Pages() {
+        cout << "Destroyed Pages!" << endl;
+    }
+};
+
+int main() {
+    int pages, price, chapters;
+
+    cin >> pages;
+    cin >> price;
+    cin >> chapters;
+
+    Pages obj(pages, price, chapters);
+
+    double AvgChapter = obj.AvgChapter();
+    double AvgPages = obj.AvgPages();
+    cout << fixed << setprecision(1);
+    cout << "Price: $" << AvgChapter << endl;
+    cout << "Pages: " << AvgPages << endl;
+
+    return 0;
+}
