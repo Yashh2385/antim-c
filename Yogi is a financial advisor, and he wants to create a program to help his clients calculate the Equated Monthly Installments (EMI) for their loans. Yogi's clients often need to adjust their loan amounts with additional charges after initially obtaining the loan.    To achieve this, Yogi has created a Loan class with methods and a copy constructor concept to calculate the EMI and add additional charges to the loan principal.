@@ -1,0 +1,60 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+using namespace std;
+
+class Loan {
+private:
+    int principal;
+    int rate;
+    int time;
+
+public:
+    // Constructor
+    Loan(int p, int r, int t) {
+        principal = p;
+        rate = r;
+        time = t;
+    }
+
+    // Copy constructor
+    Loan(Loan& other) {
+        principal = other.principal;
+        rate = other.rate;
+        time = other.time;
+    }
+
+    void addAdditionalCharges(int additionalCharges) {
+        principal += additionalCharges;
+    }
+
+    double calculateEMI() {
+        double r = rate / 100.0; // Convert rate to a double
+        double emi = (principal * r / 12) / (1 - pow(1 + r / 12, -time));
+        return emi;
+    }
+};
+
+int main() {
+    int principal, rate, time, additionalCharges;
+
+    cin >> principal;
+    cin >> rate;
+    cin >> time;
+
+    Loan originalLoan(principal, rate, time);
+    cout << fixed << setprecision(2);
+    cout << originalLoan.calculateEMI() << endl;
+
+    cin >> additionalCharges;
+
+    // Use the copy constructor to create a copiedLoan
+    Loan copiedLoan = originalLoan;
+
+    copiedLoan.addAdditionalCharges(additionalCharges);
+
+    cout << fixed << setprecision(2);
+    cout << copiedLoan.calculateEMI() << endl;
+
+    return 0;
+}
