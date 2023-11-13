@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+
+using namespace std;
+
+class Point {
+private:
+    double x;
+    double y;
+
+public:
+    Point(double xValue, double yValue) {
+        x = xValue;
+        y = yValue;
+    }
+
+    friend double operator+(Point& p1, Point& p2);
+};
+
+double operator+(Point& p1, Point& p2) {
+    double dx = p2.x - p1.x;
+    double dy = p2.y - p1.y;
+    return sqrt(dx * dx + dy * dy);
+}
+
+int main() {
+    double x1, y1, x2, y2;
+
+    cin >> x1 >> y1;
+    cin >> x2 >> y2;
+
+    Point point1(x1, y1);
+    Point point2(x2, y2);
+
+    double distance = point1 + point2;
+
+    cout << fixed << setprecision(2);
+    cout << distance;
+
+    return 0;
+}
