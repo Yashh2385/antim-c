@@ -1,0 +1,60 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+class GymMembership {
+public:
+    GymMembership(double amount = 0) {
+        amountPaid = amount;
+    }
+
+    double calculateCost() {
+        return amountPaid;
+    }
+
+protected:
+    double amountPaid;
+};
+
+class PremiumMembership : public GymMembership {
+public:
+    PremiumMembership(double amount = 0) : GymMembership(amount) {}
+
+    double calculateCost() {
+        double discount = 0.20; 
+        return amountPaid * (1 - discount);
+    }
+};
+
+class VIPMembership : public GymMembership {
+public:
+    VIPMembership(double amount = 0) : GymMembership(amount) {}
+
+    double calculateCost() {
+        double discount = 0.30;
+        return amountPaid * (1 - discount);
+    }
+};
+
+int main() {
+    double amountPaid;
+    cin >> amountPaid;
+
+    double discountedCost = 0.0;
+
+    if (amountPaid >= 500 && amountPaid < 1000) {
+        PremiumMembership premiumMembership(amountPaid);
+        discountedCost = premiumMembership.calculateCost();
+    } else if (amountPaid >= 1000) {
+        VIPMembership vipMembership(amountPaid);
+        discountedCost = vipMembership.calculateCost();
+    } else if (amountPaid < 500) {
+        cout << "Payment amount does not qualify" << endl;
+        return 0;
+    }
+
+    cout << fixed << setprecision(2) << discountedCost << endl;
+
+    return 0;
+}
