@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+private:
+    int balance;
+
+public:
+    BankAccount(int initial_balance) {
+        balance = initial_balance;
+    }
+
+    friend int operator-(BankAccount& account); // Overloaded decrement operator
+
+    int getBalance() {
+        return balance;
+    }
+};
+
+int operator-(BankAccount& account) {
+    int decreased_balance = account.balance - 1000;
+    if (decreased_balance < 0) {
+        cout << "Low Balance\n";
+    }
+    return decreased_balance;
+}
+
+int main() {
+    int initial_balance;
+    cin >> initial_balance;
+
+    BankAccount olivia_account(initial_balance);
+
+    int new_balance = -olivia_account; // Using the overloaded decrement operator
+
+    cout << new_balance << endl;
+
+    return 0;
+}
