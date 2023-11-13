@@ -1,0 +1,80 @@
+#include <iostream>
+using namespace std;
+
+class Player {
+protected:
+    int age;
+    int gamesPlayed;
+
+public:
+    Player(int playerAge, int playerGamesPlayed) {
+        age = playerAge;
+        gamesPlayed = playerGamesPlayed;
+    }
+
+    ~Player() {
+        cout << "Player destructor called." << endl;
+    }
+};
+
+class FootballPlayer : public Player {
+protected:
+    int goalsScored;
+
+public:
+    FootballPlayer(int playerAge, int playerGamesPlayed, int playerGoalsScored)
+        : Player(playerAge, playerGamesPlayed) {
+            goalsScored = playerGoalsScored;
+    }
+
+    double calculatePerformance() {
+        return (goalsScored * 2.0) / gamesPlayed;
+    }
+
+    ~FootballPlayer() {
+        cout << "FootballPlayer destructor called." << endl;
+    }
+};
+
+class Striker : public FootballPlayer {
+protected:
+    int assists;
+
+public:
+    Striker(int playerAge, int playerGamesPlayed, int playerGoalsScored, int playerAssists)
+        : FootballPlayer(playerAge, playerGamesPlayed, playerGoalsScored) {
+            assists = playerAssists;
+    }
+
+    double calculateStrikerIndex() {
+        double gamesPlayedAsDouble = gamesPlayed;
+        return calculatePerformance() + (assists / gamesPlayedAsDouble);
+    }
+
+    void identifyStrikers() {
+        double strikerIndex = calculateStrikerIndex();
+
+        if (strikerIndex > 3) {
+            cout << "Good season" << endl;
+        } else if (strikerIndex >= 2 && strikerIndex <= 3) {
+            cout << "Average season" << endl;
+        } else {
+            cout << "Bad season" << endl;
+        }
+    }
+
+    ~Striker() {
+        cout << "Striker destructor called." << endl;
+    }
+};
+
+int main() {
+    int age, gamesPlayed, goalsScored, assists;
+
+    cin >> age >> gamesPlayed >> goalsScored >> assists;
+
+    Striker striker(age, gamesPlayed, goalsScored, assists);
+    striker.identifyStrikers();
+
+    return 0;
+}
