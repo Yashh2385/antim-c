@@ -1,0 +1,50 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+    int number;
+    int evenCount = 0;
+    int oddCount = 0;
+
+    cin >> number;
+
+    ofstream inputFile("input.txt");
+    
+    for (int i = 0; i < number; ++i) {
+        int input;
+        cin >> input;
+        inputFile << input << ' ';
+
+        if (input % 2 == 0) {
+            evenCount++;
+        } else {
+            oddCount++;
+        }
+    }
+
+    inputFile.close();
+
+    ifstream inputFileRead("input.txt");
+
+    ofstream evenFile("even.txt");
+    ofstream oddFile("odd.txt");
+
+    while (inputFileRead >> number) {
+        if (number % 2 == 0) {
+            evenFile << number << ' ';
+        } else {
+            oddFile << number << ' ';
+        }
+    }
+
+    inputFileRead.close();
+    evenFile.close();
+    oddFile.close();
+
+    cout << "Count of even numbers: " << evenCount << endl;
+    cout << "Count of odd numbers: " << oddCount << endl;
+
+    return 0;
+}
