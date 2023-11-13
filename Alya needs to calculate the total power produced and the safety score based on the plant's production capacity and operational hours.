@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+class PowerPlant {
+protected:
+    int capacity;
+    int hours;
+
+public:
+    PowerPlant(int c, int h) {
+        capacity = c;
+        hours = h;
+    }
+
+    ~PowerPlant() {
+        cout << "PowerPlant destroyed" << endl;
+    }
+};
+
+class NuclearPlant : public PowerPlant {
+public:
+    NuclearPlant(int capacity, int hours) : PowerPlant(capacity, hours) { }
+
+    void CalculateTotalPowerAndSafetyScore() {
+        int totalPower = capacity * hours;
+        int safetyScore = (hours * 2) - (capacity / 10);
+
+        cout << "Total Power Produced: " << totalPower << " MW" << endl;
+        cout << "Safety Score: " << safetyScore << endl;
+
+        if (safetyScore > 100) {
+            cout << "Safe" << endl;
+        } else {
+            cout << "Not safe" << endl;
+        }
+    }
+
+    ~NuclearPlant() {
+        cout << "NuclearPlant destroyed" << endl;
+    }
+};
+
+int main() {
+    int capacity, hours;
+    cin >> capacity >> hours;
+    NuclearPlant nuclearPlant(capacity, hours);
+    nuclearPlant.CalculateTotalPowerAndSafetyScore();
+    return 0;
+}
