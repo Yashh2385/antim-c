@@ -1,0 +1,65 @@
+#include <iostream>
+
+using namespace std;
+
+class Vehicle {
+public:
+    virtual int calculateTax(int engineSize, int weight) {
+        if (engineSize <= 0 || weight <= 0) {
+            return 0;
+        }
+        return 0;  // Base class has no tax
+    }
+};
+
+class Car : public Vehicle {
+public:
+    int calculateTax(int engineSize, int weight) {
+        if (engineSize <= 0 || weight <= 0) {
+            return 0;
+        }
+
+        int tax = (engineSize * 2) + (weight / 2);
+        if (engineSize > 3000) {
+            tax += 500;  // Luxury tax
+        }
+        return tax;
+    }
+};
+
+class Bus : public Vehicle {
+public:
+    int calculateTax(int engineSize, int weight) {
+        if (engineSize <= 0 || weight <= 0) {
+            return 0;
+        }
+
+        int tax = (engineSize * 3) + weight;
+        if (weight > 10000) {
+            tax += 300;  // Additional tax
+        }
+        return tax;
+    }
+};
+
+int main() {
+    int type, engineSize, weight;
+    cin >> type >> engineSize >> weight;
+
+    int tax;
+
+    if (type == 1) {
+        Car car;
+        tax = car.calculateTax(engineSize, weight);
+    } else if (type == 2) {
+        Bus bus;
+        tax = bus.calculateTax(engineSize, weight);
+    } else {
+        cout << "Invalid" << endl;
+        return 0;
+    }
+
+    cout << tax << endl;
+
+    return 0;
+}
