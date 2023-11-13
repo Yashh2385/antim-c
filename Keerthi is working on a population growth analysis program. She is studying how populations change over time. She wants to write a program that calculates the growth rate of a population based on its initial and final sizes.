@@ -1,0 +1,43 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+class Popul {
+public:
+    virtual double calcRate(int initP, int finalP) {
+        if (initP <= 0 || finalP <= initP) {
+            return -1.0;
+        }
+    }
+};
+
+class Birth : public Popul {
+public:
+    double calcRate(int initP, int finalP) {
+        if (initP <= 0 || finalP <= initP) {
+            return -1.0;
+        }
+
+        return 1000.0 * ((double)(finalP - initP) / initP);
+    }
+};
+
+int main() {
+    int initP, finalP;
+
+    cin >> initP;
+    cin >> finalP;
+
+    Birth growth;
+
+    double rate = growth.calcRate(initP, finalP);
+
+    if (rate == -1.0) {
+        cout << "Invalid initial population" << endl;
+    } else {
+        cout << fixed << setprecision(2) << rate << endl;
+    }
+
+    return 0;
+}
