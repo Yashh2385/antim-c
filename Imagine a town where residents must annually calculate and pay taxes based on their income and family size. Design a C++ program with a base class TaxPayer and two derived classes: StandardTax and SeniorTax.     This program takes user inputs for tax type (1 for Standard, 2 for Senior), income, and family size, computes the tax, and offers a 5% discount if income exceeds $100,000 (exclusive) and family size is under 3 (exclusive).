@@ -1,0 +1,52 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class TaxPayer {
+public:
+    virtual double calculateTax(double salary, int dependents) = 0;
+};
+
+class StandardTax : public TaxPayer {
+public:
+    double calculateTax(double salary, int dependents) override {
+        double tax = salary * 0.2 - dependents * 500;
+        if (salary > 100000 && dependents < 3) {
+            tax += 0.05 * tax;
+        }
+        return tax;
+    }
+};
+
+class SeniorTax : public TaxPayer {
+public:
+    double calculateTax(double salary, int dependents) override {
+        double tax = salary * 0.15 - dependents * 700;
+        if (salary > 100000 && dependents < 3) {
+            tax += 0.05 * tax;
+        }
+        return tax;
+    }
+};
+
+int main() {
+    int type, dependents;
+    double salary;
+    cin >> type >> salary >> dependents;
+
+    if (type == 1) {
+        StandardTax taxpayer;
+        double tax = taxpayer.calculateTax(salary, dependents);
+        cout << fixed << setprecision(2) << tax << endl;
+    } 
+    else if (type == 2) {
+        SeniorTax taxpayer;
+        double tax = taxpayer.calculateTax(salary, dependents);
+        cout << fixed << setprecision(2) << tax << endl;
+    }
+    else {
+        cout << "Invalid" << endl;
+    }
+
+    return 0;
+}
