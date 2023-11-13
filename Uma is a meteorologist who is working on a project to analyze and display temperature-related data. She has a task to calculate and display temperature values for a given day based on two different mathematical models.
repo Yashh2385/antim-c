@@ -1,0 +1,70 @@
+#include <iostream>
+#include <limits>
+
+using namespace std;
+
+class Seq {
+public:
+    virtual int term(int) = 0;
+};
+
+class TempAvg : public Seq {
+private:
+    int temp;
+    int change;
+
+public:
+    TempAvg(int t, int c) {
+        temp = t;
+        change = c;
+    }
+
+    int term(int day) {
+        if (day < 0) {
+            return -1; // Handle negative input differently, or return an error code.
+        }
+        return temp + day * change;
+    }
+};
+
+class TempDiff : public Seq {
+private:
+    int temp;
+    int change;
+
+public:
+    TempDiff(int t, int c) {
+        temp = t;
+        change = c;
+    }
+
+    int term(int day) {
+        if (day < 0) {
+            return -1; // Handle negative input differently, or return an error code.
+        }
+        return temp - day * change;
+    }
+};
+
+int main() {
+    int t, c, day;
+
+    cin >> t;
+    cin >> c;
+    cin >> day;
+
+    TempAvg avg(t, c);
+    TempDiff diff(t, c);
+
+    int avgTemp = avg.term(day);
+    int tempDiff = diff.term(day);
+
+    // Display zero if day is negative
+    avgTemp = max(0, avgTemp);
+    tempDiff = max(0, tempDiff);
+
+    cout << avgTemp << " deg" << endl;
+    cout << tempDiff << " deg" << endl;
+
+    return 0;
+}
