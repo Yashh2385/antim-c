@@ -1,0 +1,47 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class UnitConverter {
+public:
+    double convert(double millimeters) {
+        return millimeters / 10.0;
+    }
+
+    double convert(int unitType, double value) {
+        if (unitType == 2) {
+            return value / 1000000.0;
+        }
+    }
+};
+
+int main() {
+    UnitConverter converter;
+
+    double value;
+    int unitType;
+
+    cin >> unitType;
+    cin >> value;
+
+    double result;
+
+    if (unitType == 1) {
+        result = converter.convert(value);
+    } else if (unitType == 2) {
+        result = converter.convert(unitType, value);
+    } else {
+        result = 0.0; 
+        cout << "Invalid unit type" <<endl;
+    }
+
+    if (result != 0.0) {
+        if (unitType == 1) {
+            cout << fixed << setprecision(2) << result << " cm" << endl;
+        } else if (unitType == 2) {
+        cout << result << " km" << endl;
+        }
+    }
+
+    return 0;
+}
