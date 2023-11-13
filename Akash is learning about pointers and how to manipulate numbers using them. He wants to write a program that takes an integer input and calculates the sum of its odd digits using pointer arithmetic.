@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int number;
+    cin >> number;
+
+    int sum = 0;
+    int* ptr = &number;
+
+    while (*ptr != 0) {
+        int digit = *ptr - ((*ptr / 10) * 10); // Extract the last digit using pointer arithmetic
+        if (digit % 2 != 0) {
+            sum += digit;
+        }
+        *ptr /= 10;
+    }
+
+    cout  << sum << endl;
+
+    return 0;
+}
