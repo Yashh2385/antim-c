@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+
+class Apartment {
+private:
+    int numResidents;
+    int numAmenities;
+    double maintenanceCharge;
+
+public:
+    Apartment() {
+        numResidents = 0;
+        numAmenities = 0;
+        maintenanceCharge = 100.0;  
+    }
+
+    void setNumResidents(int residents) {
+        numResidents = residents;
+    }
+
+    void setNumAmenities(int amenities) {
+        numAmenities = amenities;
+    }
+
+    double calculateMaintenanceCharge() {
+        if (numAmenities > 3) {
+            maintenanceCharge = 100.0 + (numAmenities - 3) * 20.0;
+        }
+        return maintenanceCharge;
+    }
+
+    void displayInfo() {
+        cout << calculateMaintenanceCharge();
+    }
+};
+
+int main() {
+    Apartment apartment;
+
+    int residents, amenities;
+    cin >> residents;
+    apartment.setNumResidents(residents);
+
+    cin >> amenities;
+    apartment.setNumAmenities(amenities);
+
+    apartment.displayInfo();
+
+    return 0;
+}
