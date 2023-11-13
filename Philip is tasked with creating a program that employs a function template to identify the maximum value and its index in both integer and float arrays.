@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+template <typename T>
+void findMaximum(T arr[], int size, T& maxValue, int& maxIndex) {
+    if (size <= 0) {
+        maxValue = T(); // Set the default value for the generic type
+        maxIndex = -1;
+        return;
+    }
+
+    T maxElement = arr[0];
+    maxIndex = 0;
+
+    for (int i = 1; i < size; ++i) {
+        if (arr[i] > maxElement) {
+            maxElement = arr[i];
+            maxIndex = i;
+        }
+    }
+
+    maxValue = maxElement;
+}
+
+int main() {
+    int size;
+    cin >> size;
+
+    if (size <= 0) {
+        return 1;
+    }
+
+    int intArray[size];
+    float floatArray[size];
+
+    for (int i = 0; i < size; ++i) {
+        cin >> intArray[i];
+    }
+
+    for (int i = 0; i < size; ++i) {
+        cin >> floatArray[i];
+    }
+
+    int intMaxValue, intMaxIndex;
+    float floatMaxValue;
+    int floatMaxIndex;
+
+    findMaximum(intArray, size, intMaxValue, intMaxIndex);
+    findMaximum(floatArray, size, floatMaxValue, floatMaxIndex);
+
+    cout << "Integer: " << intMaxValue << " Index: " << intMaxIndex << endl;
+    cout << "Float: " << floatMaxValue << " Index: " << floatMaxIndex << endl;
+
+    return 0;
+}
