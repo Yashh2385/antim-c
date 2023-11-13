@@ -1,0 +1,55 @@
+#include <iostream>
+#include <iomanip>  
+
+using namespace std;
+
+class Transport {
+private:
+    int rides;
+    double costPerRide;
+
+public:
+    Transport(int r, double c) {
+        rides = r;
+        costPerRide = c;
+    }
+
+    Transport(Transport& t) {
+        rides = t.rides;
+        costPerRide = t.costPerRide;
+    }
+
+    void applyPriceSurge() {
+        costPerRide *= 1.2;
+    }
+
+    void applyRushHourPricing() {
+        if (rides > 10) {
+            costPerRide *= 1.5; 
+        }
+    }
+
+    double getTotalCost() {
+        return rides * costPerRide;
+    }
+};
+
+int main() {
+    int rides;
+    double cost;
+
+    cin >> rides;
+    cin >> cost;
+
+    Transport original(rides, cost);
+    Transport copied(original);
+
+    copied.applyPriceSurge();
+    original.applyRushHourPricing();
+    copied.applyRushHourPricing();
+
+    cout << fixed << setprecision(2) << original.getTotalCost() << endl;
+    cout << fixed << setprecision(2) << copied.getTotalCost() << endl;
+
+    return 0;
+}
