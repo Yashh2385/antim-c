@@ -1,0 +1,26 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+template <typename T>
+class SpeedCalculator {
+public:
+    T calculateFinalSpeed(T initialSpeed, T acceleration, T timeElapsed) {
+        return initialSpeed + acceleration * timeElapsed;
+    }
+};
+
+int main() {
+    double initialSpeed, acceleration, timeElapsed;
+
+    cin >> initialSpeed;
+    cin >> acceleration;
+    cin >> timeElapsed;
+
+    SpeedCalculator<double> calculator;
+    double finalSpeed = calculator.calculateFinalSpeed(initialSpeed, acceleration, timeElapsed);
+    
+    cout << fixed << setprecision(1) << finalSpeed << " m/s" << endl;
+    return 0;
+}
