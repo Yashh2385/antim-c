@@ -1,0 +1,57 @@
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>
+
+using namespace std;
+
+class Taxi {
+public:
+    float calculateFare(int distance, int time);  
+};
+
+class RegularTaxi : public Taxi {
+public:
+    float calculateFare(int distance, int time) {
+        float fare = 10 + (distance * 2) + (time * 0.1);
+        return fare;
+    }
+};
+
+class LuxuryTaxi : public Taxi {
+public:
+    float calculateFare(int distance, int time) {
+        float fare = 20 + (distance * 3) + (time * 0.2);
+        return fare;
+    }
+};
+
+int main() {
+    int distance, time;
+    char taxiType;
+
+    cin >> distance;
+    cin >> time;
+    cin >> taxiType;
+
+    float fare = 0;
+
+    switch (taxiType) {
+    case 'R': {
+        RegularTaxi regularTaxi;
+        fare = regularTaxi.calculateFare(distance, time);
+        break;
+    }
+    case 'L': {
+        LuxuryTaxi luxuryTaxi;
+        fare = luxuryTaxi.calculateFare(distance, time);
+        break;
+    }
+    default:
+        cout << "Invalid taxi type" << endl;
+        return 0;
+    }
+
+    cout << fixed << setprecision(2) << fare << endl;
+
+    return 0;
+}
