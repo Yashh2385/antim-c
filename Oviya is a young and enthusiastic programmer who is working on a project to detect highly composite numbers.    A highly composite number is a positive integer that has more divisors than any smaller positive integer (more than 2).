@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+class Divisors {
+private:
+    int number;
+
+public:
+    Divisors() {
+        number = 0;  
+    }
+
+    void setNumber(int num) {
+        number = num;
+    }
+
+    int countDivisors() {
+        int count = 0;
+        for (int i = 1; i <= number; ++i) {
+            if (number % i == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    bool isHighlyComposite() {
+        if (number <= 1) {
+            return false; 
+        }
+
+        int maxDivisors = 0;
+        for (int i = 1; i < number; ++i) { 
+            Divisors div;
+            div.setNumber(i);
+            int divisors = div.countDivisors();
+            if (divisors > maxDivisors) {
+                maxDivisors = divisors;
+            }
+        }
+
+        if (countDivisors() > maxDivisors) {
+            return true;
+        }
+        return false;
+    }
+};
+
+int main() {
+    int n;
+
+    cin >> n;
+
+    Divisors div;
+    div.setNumber(n);
+
+    int divisors = div.countDivisors();
+    cout << divisors << endl;
+
+    if (div.isHighlyComposite()) {
+        cout << "Yes" << endl;
+    } else {
+        cout << "No" << endl;
+    }
+
+    return 0;
+}
