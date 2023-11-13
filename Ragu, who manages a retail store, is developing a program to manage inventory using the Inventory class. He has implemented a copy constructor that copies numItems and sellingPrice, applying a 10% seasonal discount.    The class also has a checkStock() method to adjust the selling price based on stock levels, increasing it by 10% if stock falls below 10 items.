@@ -1,0 +1,51 @@
+#include <iostream>
+#include <iomanip>  
+
+using namespace std;
+
+class Inventory {
+private:
+    int numItems;
+    double sellingPrice;
+
+public:
+    Inventory(int items, double price) {
+        numItems = items;
+        sellingPrice = price;
+    }
+
+    Inventory(Inventory& other) {
+        numItems = other.numItems;
+        sellingPrice = other.sellingPrice;
+        sellingPrice *= 0.9; 
+    }
+
+    void checkStock() {
+        if (numItems < 10) {
+            sellingPrice *= 1.1; 
+        }
+    }
+
+    void displayInventory() {
+        cout << fixed << setprecision(2) << sellingPrice << endl; 
+    }
+};
+
+int main() {
+    int initialItems;
+    double initialPrice;
+
+    cin >> initialItems;
+    cin >> initialPrice;
+
+    Inventory initialInventory(initialItems, initialPrice);
+    Inventory copiedInventory = initialInventory;
+
+    initialInventory.checkStock();
+    copiedInventory.checkStock();
+
+    initialInventory.displayInventory();
+    copiedInventory.displayInventory();
+
+    return 0;
+}
