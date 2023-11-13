@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+#define MAX_ROWS 100
+#define MAX_COLS 100
+
+int main() {
+    int arr[MAX_ROWS][MAX_COLS];
+    int rows, cols;
+
+    cin >> rows;
+    cin >> cols;
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cin >> arr[i][j];
+        }
+    }
+
+    bool seen[MAX_ROWS] = {false}; 
+    bool repeated = false; 
+
+    for (int i = 0; i < rows; i++) {
+        if (seen[i]) continue;
+
+        for (int j = i + 1; j < rows; j++) {
+            bool match = true;
+            for (int k = 0; k < cols; k++) {
+                if (arr[i][k] != arr[j][k]) {
+                    match = false;
+                    break;
+                }
+            }
+            if (match) {
+                seen[j] = true;
+                repeated = true;
+                cout << i << " and " << j << endl;
+            }
+        }
+    }
+
+    if (!repeated) {
+        cout << "No repeating rows" << endl;
+    }
+
+    return 0;
+}
