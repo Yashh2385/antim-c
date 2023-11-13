@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int calculateSum(int n) {
+    int sum = 0;
+    for (int i = 4; i <= n; i += 4) {
+        sum += i;
+    }
+    return sum;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    int sum = calculateSum(n);
+
+    try {
+        if (sum % 5 == 0) {
+            throw 1; 
+        } else {
+            cout << sum << endl;
+        }
+    } catch (int exceptionCode) {
+        if (exceptionCode == 1) {
+            cout << sum << endl;
+            cout << "Sum is a multiple of 5" << endl;
+        }
+    }
+
+    return 0;
+}
