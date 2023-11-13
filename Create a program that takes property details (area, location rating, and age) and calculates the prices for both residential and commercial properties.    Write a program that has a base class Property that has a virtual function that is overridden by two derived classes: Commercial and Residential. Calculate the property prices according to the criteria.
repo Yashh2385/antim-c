@@ -1,0 +1,55 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Property {
+public:
+    virtual double calculatePrice(int area, int locationRating, int age) = 0;
+};
+
+class Residential : public Property {
+public:
+    double calculatePrice(int area, int locationRating, int age) {
+        double price = area * 500.0 + locationRating * 1000.0 - age * 200.0;
+        if (area > 2000) {
+            price += 0.05 * price; // 5% increase
+        }
+        if (age > 50) {
+            price -= 0.10 * price; // 10% decrease
+        }
+        return price;
+    }
+};
+
+class Commercial : public Property {
+public:
+    double calculatePrice(int area, int locationRating, int age) {
+        double price = area * 700.0 + locationRating * 1500.0 - age * 300.0;
+        if (area > 2000) {
+            price += 0.05 * price; // 5% increase
+        }
+        if (age > 50) {
+            price -= 0.10 * price; // 10% decrease
+        }
+        return price;
+    }
+};
+
+int main() {
+    Residential residentialProperty;
+    Commercial commercialProperty;
+
+    int area, locationRating, age;
+    cin >> area;
+    cin >> locationRating;
+    cin >> age;
+
+    double residentialPrice = residentialProperty.calculatePrice(area, locationRating, age);
+    double commercialPrice = commercialProperty.calculatePrice(area, locationRating, age);
+
+    cout <<  fixed << setprecision(2);
+    cout << "Rs. " << residentialPrice << endl;
+    cout << "Rs. " << commercialPrice << endl;
+
+    return 0;
+}
