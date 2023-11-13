@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+bool isPunctuation(char c) {
+    char punctuationMarks[] = {'.', ',', '!', '?', ';', ':', '-'}; 
+    
+    for (int i = 0; i < sizeof(punctuationMarks) / sizeof(punctuationMarks[0]); i++) {
+        if (c == punctuationMarks[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int main() {
+    string input;
+    getline(cin, input);
+
+    string result = "";
+    for (char c : input) {
+        if (!isPunctuation(c)) {
+            result += c;
+        }
+    }
+
+    cout << result;
+
+    return 0;
+}
