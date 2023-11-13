@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+
+class Distance {
+private:
+    int feet;
+    int inches;
+
+public:
+    void setDistance(int f, int in) {
+        feet = f;
+        inches = in;
+    }
+
+    void displayDistance() {
+        cout << feet << " feet and " << inches << " inches" << endl;
+    }
+
+    friend Distance operator+(Distance d1, Distance d2) {
+        int totalFeet = d1.feet + d2.feet;
+        int totalInches = d1.inches + d2.inches;
+
+        if (totalInches >= 12) {
+            totalFeet += totalInches / 12;
+            totalInches %= 12;
+        }
+
+        if (totalFeet > 100) {
+            totalFeet -= 100;
+            totalFeet = totalFeet / 3;
+        }
+
+        Distance result;
+        result.setDistance(totalFeet, totalInches);
+
+        return result;
+    }
+};
+
+int main() {
+
+    Distance distance1, distance2;
+    int feet, inches;
+
+    cin >> feet >> inches;
+    distance1.setDistance(feet, inches);
+
+    cin >> feet >> inches;
+    distance2.setDistance(feet, inches);
+
+    Distance result = distance1 + distance2;
+
+    result.displayDistance();
+
+    return 0;
+}
