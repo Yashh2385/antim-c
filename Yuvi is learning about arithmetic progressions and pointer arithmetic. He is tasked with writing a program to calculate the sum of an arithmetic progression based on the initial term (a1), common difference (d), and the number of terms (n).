@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int firstTerm, commonDifference, numTerms, sum;
+    
+    cin >> firstTerm;
+    cin >> commonDifference;
+    cin >> numTerms;
+
+    int* firstTermPtr = &firstTerm;
+    int* commonDifferencePtr = &commonDifference;
+    int* numTermsPtr = &numTerms;
+    int* sumPtr = &sum;
+
+    // Calculate the sum of the arithmetic progression using pointer arithmetic
+    *sumPtr = (*numTermsPtr * (2 * (*firstTermPtr) + ((*numTermsPtr - 1) * (*commonDifferencePtr))) / 2);
+
+    cout << fixed << *sumPtr << endl;
+    
+    return 0;
+}
