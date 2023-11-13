@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+int sumOfDigits(int number) {
+    int sum = 0;
+    while (number > 0) {
+        sum += number % 10;
+        number /= 10;
+    }
+    return sum;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    int elements[100]; 
+    int divisibleCount = 0;
+
+    for (int i = 0; i < n; i++) {
+        cin >> elements[i];
+    }
+
+    for (int i = 0; i < n; i++) {
+        int digitSum = sumOfDigits(elements[i]);
+        if (digitSum > 0 && elements[i] % digitSum == 0) {
+            cout << elements[i] << " ";
+            divisibleCount++;
+        }
+    }
+
+    if (divisibleCount == 0) {
+        cout << "No divisible numbers";
+    }
+
+    return 0;
+}
