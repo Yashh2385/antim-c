@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+class Transport {
+public:
+    virtual int calculateFare(int distance) = 0;
+};
+
+class Bus : public Transport {
+public:
+    int calculateFare(int distance) {
+        int fare = distance * 2;
+        if (distance > 30) {
+            fare += 25; 
+        }
+        if (distance < 10) {
+            fare += 5;
+        }
+        return fare;
+    }
+};
+
+class Train : public Transport {
+public:
+    int calculateFare(int distance) {
+        int fare = distance * 3;
+        if (distance > 30) {
+            fare += 25; 
+        }
+        if (distance < 10) {
+            fare += 5; 
+        }
+        return fare;
+    }
+};
+
+int main() {
+    int distance;
+    cin >> distance;
+
+    Bus bus;
+    Train train;
+
+    int busFare = bus.calculateFare(distance);
+    int trainFare = train.calculateFare(distance);
+
+    cout << "Bus fare: $" << busFare << endl;
+    cout << "Train fare: $" << trainFare << endl;
+
+    return 0;
+}
