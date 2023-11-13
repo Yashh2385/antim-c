@@ -1,0 +1,30 @@
+#include <iostream>
+#include <string>
+
+int main() {
+    using namespace std;
+
+    string input;
+    getline(cin, input);
+
+    bool capitalizeNext = true;
+
+    for (char &c : input) {
+        if (isalpha(c)) {
+            if (capitalizeNext) {
+                c = toupper(c);
+                capitalizeNext = false;
+            } else {
+                c = tolower(c);
+            }
+        } else {
+            if (c == ' ') {
+                capitalizeNext = true; 
+            }
+        }
+    }
+
+    cout << input;
+
+    return 0;
+}
