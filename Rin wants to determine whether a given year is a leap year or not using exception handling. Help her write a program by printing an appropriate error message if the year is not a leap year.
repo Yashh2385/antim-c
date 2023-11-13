@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+bool isLeapYear(int year) {
+    if (year % 4 == 0) {
+        if (year % 100 == 0) {
+            if (year % 400 == 0) {
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+    return false;
+}
+
+int main() {
+    int year;
+    cin >> year;
+
+    try {
+        if (!isLeapYear(year)) {
+            throw 0; 
+        }
+        cout << "Leap year" << endl;
+    } catch (int exceptionCode) {
+        if (exceptionCode == 0) {
+            cout << "ERROR!" << endl;
+        }
+    }
+
+    return 0;
+}
