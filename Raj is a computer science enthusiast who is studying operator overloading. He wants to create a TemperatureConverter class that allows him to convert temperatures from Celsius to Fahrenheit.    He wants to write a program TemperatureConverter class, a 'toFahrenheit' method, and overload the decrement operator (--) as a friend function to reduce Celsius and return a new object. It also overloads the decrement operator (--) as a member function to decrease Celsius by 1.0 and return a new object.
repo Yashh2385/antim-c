@@ -1,0 +1,42 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class TemperatureConverter {
+private:
+    double celsius;
+
+public:
+    TemperatureConverter(double initialCelsius) {
+        celsius = initialCelsius; // Initialize the member variable directly
+    }
+
+    double toFahrenheit() {
+        return (celsius * 9.0 / 5.0) + 32.0;
+    }
+
+    friend TemperatureConverter operator--(TemperatureConverter& tc, int) {
+        TemperatureConverter temp(tc.celsius);
+        tc.celsius--;
+        return temp;
+    }
+
+    TemperatureConverter operator--() {
+        TemperatureConverter temp(celsius - 1.0);
+        celsius = temp.celsius; // Update the member variable
+        return temp;
+    }
+};
+
+int main() {
+    double initialCelsius;
+    cin >> initialCelsius;
+
+    TemperatureConverter tc(initialCelsius);
+    cout << fixed << setprecision(2) << tc.toFahrenheit() << " Fahrenheit" << endl;
+
+    tc--;
+    cout << fixed << setprecision(2) << tc.toFahrenheit() << " Fahrenheit" << endl;
+
+    return 0;
+}
