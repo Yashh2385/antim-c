@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+
+    try {
+        long long sum = 0;
+
+        for (int i = 1; i <= n; i += 2) {
+            sum += i;
+        }
+
+        if (sum % 5 == 0) {
+            throw 1; 
+        }
+
+        cout <<  sum << endl;
+    } catch (int exceptionCode) {
+        if (exceptionCode == 1) {
+            cout << "EXCEPTION CAUGHT!" << endl;
+        }
+    }
+
+    return 0;
+}
