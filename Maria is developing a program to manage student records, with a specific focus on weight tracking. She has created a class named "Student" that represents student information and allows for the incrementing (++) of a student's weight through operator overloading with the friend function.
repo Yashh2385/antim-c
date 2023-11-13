@@ -1,0 +1,44 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class Student {
+private:
+    int studentID;
+    double weight;
+
+public:
+    Student(int id, double w) {
+        studentID = id;
+        weight = w;
+    }
+
+    void displayStudent() {
+        cout << studentID << " " << fixed << setprecision(2) << weight << endl;
+    }
+
+    friend void operator++(Student& student); 
+};
+
+void operator++(Student& student) {
+    student.weight++;
+}
+
+int main() {
+    int studentID;
+    double initialWeight;
+
+    cin >> studentID;
+
+    cin >> initialWeight;
+
+    Student student(studentID, initialWeight);
+
+    student.displayStudent();
+
+    ++student; 
+
+    student.displayStudent();
+
+    return 0;
+}
