@@ -1,0 +1,59 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+bool isPrime(int number) {
+    if (number <= 1)
+        return false;
+    if (number == 2)
+        return true;
+    if (number % 2 == 0)
+        return false;
+    for (int i = 3; i <= sqrt(number); i += 2) {
+        if (number % i == 0)
+            return false;
+    }
+    return true;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    int* arr = new int[n];
+
+    for (int i = 0; i < n; ++i) {
+        cin >> arr[i];
+    }
+
+    int x;
+    cin >> x;
+
+    bool found = false;
+    for (int i = 0; i < n; ++i) {
+        if (arr[i] == x) {
+            found = true;
+            if (isPrime(x)) {
+                arr[i] = x * x;  // Update to square of x
+                cout << "Found and updated to its square.\n";
+            } else {
+                cout << "Found, but not a prime number.\n";
+            }
+            break;
+        }
+    }
+
+    if (!found) {
+        cout << "Number not found in the array.\n";
+    }
+
+    for (int i = 0; i < n; ++i) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    // delete[] arr;  // Removed the delete keyword
+
+    return 0;
+}
