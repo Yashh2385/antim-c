@@ -1,0 +1,77 @@
+#include<iostream>
+#include<string>
+#include<cmath>
+
+using namespace std;
+
+class Bicycle 
+{
+public:
+    int gear;
+    int speed;
+
+    void input(int newGear, int newSpeed)
+    {
+        gear = newGear;
+        speed = newSpeed;
+    }
+
+    void displayGearAndSpeed() {
+        cout << gear << " " << speed;
+    }
+
+    void display() {
+        cout << "Gear and Speed: " << gear << " " << speed << endl;
+    }
+
+    double calculateDistance(double time)
+    {
+        return speed * time; // Distance = Speed * Time
+    }
+};
+
+class MountainBike : public Bicycle
+{
+public:
+    int seatHeight;
+
+    void input(int newGear, int newSpeed, int newSeatHeight)
+    {
+        Bicycle::input(newGear, newSpeed);
+        seatHeight = newSeatHeight;
+    }
+
+    void display()
+    {
+        Bicycle::display();
+        cout << "Seat Height: " << seatHeight << " cm" << endl;
+    }
+};
+
+int main()
+{
+    int gear, speed;
+    cin >> gear >> speed;
+
+    Bicycle b;
+    b.input(gear, speed);
+
+    MountainBike mb;
+    int seatHeight;
+    cin >> seatHeight;
+    mb.input(gear, speed, seatHeight);
+
+    cout << "Gear and Speed: ";
+    b.displayGearAndSpeed();
+    cout << endl;
+
+    cout << "Seat Height: " << seatHeight << " cm" << endl;
+
+    double time;
+    cin >> time;
+
+    double distanceBicycle = b.calculateDistance(time);
+    cout << "Distance: " << distanceBicycle << " km" << endl;
+
+    return 0;
+}
