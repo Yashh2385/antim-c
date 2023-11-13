@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+class Stock {
+private:
+    int initialPrice;
+    int currentPrice;
+
+public:
+    Stock(int initial, int current) {
+        initialPrice = initial;
+        currentPrice = current;
+    }
+
+    Stock(Stock& other) {
+        initialPrice = other.initialPrice;
+        currentPrice = other.currentPrice - 10; 
+        if (currentPrice < 90) {
+            currentPrice -= 5;
+        }
+    }
+
+    int getInitialPrice() {
+        return initialPrice;
+    }
+
+    int getCurrentPrice() {
+        return currentPrice;
+    }
+};
+
+int main() {
+    int initial, current;
+    
+    cin >> initial;
+    
+    cin >> current;
+
+    Stock original(initial, current);
+    Stock copied(original); 
+
+    cout << original.getInitialPrice() << " "<< original.getCurrentPrice() << endl;
+    cout << copied.getInitialPrice() << " " << copied.getCurrentPrice() << endl;
+
+    return 0;
+}
