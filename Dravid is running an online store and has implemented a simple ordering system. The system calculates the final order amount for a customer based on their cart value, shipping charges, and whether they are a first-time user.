@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+class Order {
+private:
+    int cartValue;
+    int shippingCharges;
+    bool isFirstTimeUser;
+
+public:
+    Order() {
+        cartValue = 0;
+        shippingCharges = 0;
+        isFirstTimeUser = true;
+    }
+
+    void setCartValue(int value) {
+        cartValue = value;
+    }
+
+    void setShippingCharges(int charges) {
+        shippingCharges = charges;
+    }
+
+    void markAsNotFirstTimeUser() {
+        isFirstTimeUser = false;
+    }
+
+   int calculateFinalAmount() {
+        int finalAmount = cartValue + shippingCharges;
+
+        if (isFirstTimeUser) {
+            finalAmount -= 10; 
+        }
+
+        return finalAmount;
+    }
+};
+
+int main() {
+    Order myOrder;
+
+    int cartValue, shippingCharges;
+    char isFirstTime;
+
+    cin >> cartValue;
+
+    cin >> shippingCharges;
+
+    cin >> isFirstTime;
+
+    if (isFirstTime == 'N' || isFirstTime == 'n') {
+        myOrder.markAsNotFirstTimeUser();
+    }
+
+    myOrder.setCartValue(cartValue);
+    myOrder.setShippingCharges(shippingCharges);
+
+    int finalAmount = myOrder.calculateFinalAmount();
+
+    cout  << finalAmount << endl;
+
+    return 0;
+}
