@@ -1,0 +1,38 @@
+#include <iostream>
+#include <iomanip> // for setprecision
+using namespace std;
+
+#define maxCourses 5  
+#define maxStudents 10
+
+class Enrollment {
+public:
+    int course;
+    int student;
+    int grade;
+};
+
+int main() {
+    Enrollment enrollments[maxCourses][maxStudents];
+    int courses, students;
+
+    cin >> courses;
+    cin >> students;
+
+    for (int i = 0; i < courses; i++) {
+        for (int j = 0; j < students; j++) {
+            cin >> enrollments[i][j].course >> enrollments[i][j].student >> enrollments[i][j].grade;
+        }
+    }
+
+    for (int i = 0; i < courses; i++) {
+        double total = 0.0;
+        for (int j = 0; j < students; j++) {
+            total += enrollments[i][j].grade;
+        }
+        double average = total / students;
+        cout << "Course " << i + 1 << " - Average Grade: " << fixed << setprecision(2) << average << endl;
+    }
+
+    return 0;
+}
